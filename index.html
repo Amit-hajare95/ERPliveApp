@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP Live Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px 5px 0 0;
+            margin: -20px -20px 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .api-section {
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .api-button {
+            display: inline-block;
+            margin: 10px 10px 10px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .api-button:hover {
+            background-color: #45a049;
+        }
+        #api-response {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ERP Live Application</h1>
+        </header>
+        
+        <div>
+            <h2>Welcome to the ERP Dashboard</h2>
+            <p>This is a simple demonstration of the ERP application frontend.</p>
+            <p>The application uses Node.js for the backend API and serves HTML content for the frontend.</p>
+        </div>
+        
+        <div class="api-section">
+            <h3>API Testing</h3>
+            <p>Click the buttons below to test different API endpoints:</p>
+            
+            <button class="api-button" onclick="fetchApi('/api')">Test Main API</button>
+            <button class="api-button" onclick="fetchApi('/api/users')">Test Users API</button>
+            <button class="api-button" onclick="fetchApi('/api/products')">Test Products API</button>
+            
+            <div id="api-response">API response will appear here...</div>
+        </div>
+        
+        <div class="footer">
+            <p>ERP Live Application &copy; 2025</p>
+        </div>
+    </div>
+    
+    <script>
+        // Function to fetch data from the API
+        function fetchApi(endpoint) {
+            document.getElementById('api-response').textContent = 'Loading...';
+            
+            fetch(endpoint)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('api-response').textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    document.getElementById('api-response').textContent = 'Error: ' + error.message;
+                    console.error('Error fetching API:', error);
+                });
+        }
+        
+        // Fetch the main API on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchApi('/api');
+        });
+    </script>
+</body>
+</html>
