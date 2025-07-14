@@ -11,7 +11,7 @@ COPY . .
 
 # Add HEALTHCHECK instruction
 HEALTHCHECK --interval=30s --timeout=5s \
-  CMD wget --quiet --tries=1 --spider http://localhost:3000 || exit 1
+  CMD wget --quiet --tries=1 --spider http://localhost:3031 || exit 1
 
-EXPOSE 3000
+EXPOSE 3031
 CMD ["node", "app.js"]

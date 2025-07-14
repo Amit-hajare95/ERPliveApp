@@ -24,8 +24,8 @@ COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Add HEALTHCHECK instruction
 HEALTHCHECK --interval=30s --timeout=5s \
-  CMD wget --quiet --tries=1 --spider http://localhost:80 || exit 1
+  CMD wget --quiet --tries=1 --spider http://localhost:3030 || exit 1
 
-EXPOSE 80
+EXPOSE 3030
 CMD ["nginx", "-g", "daemon off;"]
 

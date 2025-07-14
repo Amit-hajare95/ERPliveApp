@@ -65,7 +65,7 @@ const server = http.createServer((req, res) => {
 });
 
 // Define the port and host
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3031;
 const host = '0.0.0.0';  // Listen on all network interfaces
 
 // Start the server
